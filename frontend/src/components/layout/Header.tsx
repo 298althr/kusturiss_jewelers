@@ -31,7 +31,7 @@ export function Header() {
     }
 
     const navLinks = [
-        { name: 'Besoke', href: '/products?category=bespoke' },
+        { name: 'bespoke', href: '/products?category=bespoke' },
         { name: 'Collections', href: '/products' },
         { name: 'Engagement', href: '/products?category=engagement' },
         { name: 'Our Heritage', href: '/about' },
