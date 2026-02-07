@@ -41,7 +41,7 @@ const aiToolsRoutes = require('./routes/ai-tools');
 class EcommerceApp {
   constructor() {
     this.app = express();
-    this.port = process.env.PORT || 3000;
+    this.port = process.env.PORT || 4000;
     this.host = process.env.HOST || 'localhost';
 
     this.initializeMiddleware();
