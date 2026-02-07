@@ -53,7 +53,7 @@ export function FeaturedProducts() {
                         <span className="text-secondary font-bold uppercase tracking-[0.2em] text-[10px] mb-2 block">Our Favorites</span>
                         <h2 className="text-4xl md:text-5xl font-heading text-primary">The Curated Collection</h2>
                     </div>
-                    <Link href="/products" className="text-xs font-bold uppercase tracking-widest border-b border-primary hover:text-secondary hover:border-secondary transition-all pb-1 hidden sm:block">
+                    <Link href="/products" className="text-xs font-bold uppercase tracking-widest border-b border-[#2a2a2873] text-[#2a2a2873] hover:text-secondary hover:border-secondary transition-all pb-1 hidden sm:block">
                         View All Pieces
                     </Link>
                 </div>
@@ -91,7 +91,7 @@ export function FeaturedProducts() {
                     ))}
                 </div>
 
-                <Link href="/products" className="sm:hidden block text-center mt-12 text-xs font-bold uppercase tracking-widest border-b border-primary max-w-max mx-auto pb-1">
+                <Link href="/products" className="sm:hidden block text-center mt-12 text-xs font-bold uppercase tracking-widest border-b border-[#2a2a2873] text-[#2a2a2873] max-w-max mx-auto pb-1">
                     View All Pieces
                 </Link>
             </Container>
