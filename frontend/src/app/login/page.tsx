@@ -42,7 +42,7 @@ export default function LoginPage() {
                     <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-6">
                         <Fingerprint size={32} className="text-primary" />
                     </div>
-                    <h2 className="text-3xl font-heading mb-2">Heritage Access</h2>
+                    <h2 className="text-3xl font-heading mb-2 text-[#353532]">Heritage Access</h2>
                     <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Secure Authentication Gateway</p>
                 </div>
 
