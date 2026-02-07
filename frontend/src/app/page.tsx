@@ -19,7 +19,7 @@ export default function Home() {
             <div className="relative aspect-square">
               <div className="absolute -inset-4 border border-secondary/30 z-0" />
               <Image
-                src="https://images.unsplash.com/photo-1573408302355-4e0b7cb39697?auto=format&fit=crop&q=80&w=1000"
+                src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=1000"
                 alt="Jewelry Craftsmanship"
                 fill
                 className="object-cover z-10"
@@ -27,8 +27,8 @@ export default function Home() {
             </div>
             <div className="space-y-8">
               <span className="text-secondary font-bold uppercase tracking-[0.3em] text-xs block">Our Heritage</span>
-              <h2 className="text-5xl font-heading text-[#8f8f8f] leading-tight">A Century of <br /><span className="italic">Excellence</span> on Sansom Street.</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
+              <h2 className="text-5xl font-heading text-[#E5E5E5] leading-tight">A Century of <br /><span className="italic">Excellence</span> on Sansom Street.</h2>
+              <p className="text-gray-400 leading-relaxed text-lg">
                 For over ten years, Kusturiss Jewelers has been a cornerstone of Philadelphia's historic Jewelers' Row. We don't just sell jewelry; we craft legacies. Every diamond is hand-selected, and every setting is designed with the precision of a master artisan.
               </p>
               <div className="grid grid-cols-2 gap-12 pt-6">
