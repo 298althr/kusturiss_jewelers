@@ -42,7 +42,7 @@ class EcommerceApp {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || 4000;
-    this.host = process.env.HOST || 'localhost';
+    this.host = process.env.HOST || '0.0.0.0';
 
     this.initializeMiddleware();
     this.initializeRoutes();
