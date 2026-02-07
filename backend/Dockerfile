@@ -1,5 +1,5 @@
-# Use full Node 18 image which includes curl and other utilities
-FROM node:18
+# Use full Node 20 image which includes curl and other utilities
+FROM node:20
 
 # Set working directory
 WORKDIR /app
