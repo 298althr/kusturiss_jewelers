@@ -11,7 +11,7 @@ export function TrustSection() {
                         {[...Array(5)].map((_, i) => (
                             <span key={i} className="text-secondary text-lg">★</span>
                         ))}
-                        <span className="ml-4 text-xs font-bold uppercase tracking-widest text-gray-500">
+                        <span className="ml-4 text-xs font-bold uppercase tracking-widest text-gray-400">
                             4.9/5 from 800+ Clients
                         </span>
                     </div>
