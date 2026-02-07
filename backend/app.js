@@ -131,14 +131,8 @@ class EcommerceApp {
     this.app.use('/api/jewelry-purchases', jewelryPurchaseRoutes);
     this.app.use('/api/ai', aiToolsRoutes);
 
-    // Serve frontend in production
-    if (process.env.NODE_ENV === 'production') {
-      this.app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-      this.app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-      });
-    }
+    // Serve static files if needed
+    // In Railway, frontend and backend are separate, so this is handled by the frontend service.
 
     // 404 handler
     this.app.use('*', (req, res) => {
@@ -226,35 +220,53 @@ class EcommerceApp {
   }
 
   async start() {
+    // Start server first so health checks pass immediately
+    this.server = this.app.listen(this.port, this.host, () => {
+      console.log(`🚀 Kusturiss Backend listening on http://${this.host}:${this.port}`);
+      console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`🔗 Health check: http://${this.host}:${this.port}/api/health`);
+    });
+
     try {
-      // Connect to database
-      await database.connect();
+      console.log('🔄 Initializing services...');
 
-      // Run migrations
-      await database.migrate();
+      // Connect to database with retry logic
+      let connected = false;
+      let retries = 5;
+      while (!connected && retries > 0) {
+        try {
+          await database.connect();
+          connected = true;
+        } catch (err) {
+          retries--;
+          console.error(`⚠️ Database connection attempt failed (${retries} retries left):`, err.message);
+          if (retries > 0) await new Promise(res => setTimeout(res, 3000));
+        }
+      }
 
-      // Start server
-      this.server = this.app.listen(this.port, this.host, () => {
-        console.log(`🚀 E-commerce Template Server running on http://${this.host}:${this.port}`);
-        console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
-        console.log(`🔗 Health check: http://${this.host}:${this.port}/api/health`);
-      });
+      if (connected) {
+        // Run migrations
+        try {
+          await database.migrate();
+          console.log('✅ Migrations completed');
+        } catch (migrateErr) {
+          console.error('❌ Migration failed:', migrateErr.message);
+        }
+      } else {
+        console.error('❌ Critical: Database connection failed. Health check will report unhealthy.');
+      }
 
       // Graceful shutdown
       const gracefulShutdown = async (signal) => {
         console.log(`\n🔄 Received ${signal}, shutting down gracefully...`);
-
         this.server.close(async () => {
           console.log('✅ HTTP server closed');
-
           await database.disconnect();
           await rateLimiting.disconnect();
-
           console.log('✅ Graceful shutdown complete');
           process.exit(0);
         });
 
-        // Force shutdown after 30 seconds
         setTimeout(() => {
           console.error('❌ Forced shutdown after timeout');
           process.exit(1);
@@ -265,8 +277,7 @@ class EcommerceApp {
       process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 
     } catch (error) {
-      console.error('❌ Failed to start server:', error.message);
-      process.exit(1);
+      console.error('🚨 Serious failure during initialization:', error.message);
     }
   }
 }
