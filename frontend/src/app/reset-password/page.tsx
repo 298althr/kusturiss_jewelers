@@ -9,7 +9,9 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { resetPassword, clearError } from '@/store/slices/authSlice';
 import Link from 'next/link';
 
-export default function ResetPasswordPage() {
+import { Suspense } from 'react';
+
+function ResetPasswordContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const token = searchParams.get('token');
@@ -128,5 +130,17 @@ export default function ResetPasswordPage() {
                 )}
             </motion.div>
         </div>
+    );
+}
+
+export default function ResetPasswordPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center pt-20 bg-base">
+                <Loader2 className="animate-spin text-primary" size={40} />
+            </div>
+        }>
+            <ResetPasswordContent />
+        </Suspense>
     );
 }
