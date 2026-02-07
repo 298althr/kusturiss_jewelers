@@ -11,14 +11,14 @@ export function TrustSection() {
                         {[...Array(5)].map((_, i) => (
                             <span key={i} className="text-secondary text-lg">★</span>
                         ))}
-                        <span className="ml-4 text-xs font-bold uppercase tracking-widest text-primary">
+                        <span className="ml-4 text-xs font-bold uppercase tracking-widest text-gray-500">
                             4.9/5 from 800+ Clients
                         </span>
                     </div>
 
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                         {logos.map((logo) => (
-                            <span key={logo} className="text-xl md:text-2xl font-bold tracking-[0.3em] font-heading">{logo}</span>
+                            <span key={logo} className="text-xl md:text-2xl font-bold tracking-[0.3em] font-heading text-gray-400">{logo}</span>
                         ))}
                     </div>
                 </div>
